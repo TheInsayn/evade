@@ -14,6 +14,8 @@ namespace Evade
         public const int BLOCKMINSPEED = 5;
         public const int BLOCKMAXSPEED = 8;
 
+        public const float GAMESPEEDFACTOR = 0.2F; // magicnumber
+
         public static readonly Color PLAYERCOLOR = Colors.Yellow;
         public static readonly Color BLOCKCOLOR = Colors.Red;
     }

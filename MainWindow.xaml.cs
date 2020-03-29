@@ -49,7 +49,7 @@ namespace WpfEvade
             lHighscoreTime.Content = time.ToString();
             gameTimer = new DispatcherTimer();
             gameTimer.Tick += GameTimer_Tick;
-            gameTimer.Interval = new TimeSpan(0, 0, 0, 0, 20);
+            gameTimer.Interval = new TimeSpan(0, 0, 0, 0, 2);
             gameTimer.Start();
             playedTimer = new DispatcherTimer();
             playedTimer.Tick += PlayedTimer_Tick;
@@ -185,8 +185,8 @@ namespace WpfEvade
             count = 0;
             timePlayed = -1;
             player.X = (int)canvas.Width / 2 - Constants.PLAYERSIZE / 2;
-            player.Y = (int)canvas.Height - Constants.PLAYERSIZE;
             canvas.Children.Add(player.Rect);
+            Canvas.SetLeft(player.Rect, player.X);
             //get highscore
             string name = FileManager.ReadAttribute("name");
             float time = float.Parse(FileManager.ReadAttribute("time"));
@@ -214,7 +214,7 @@ namespace WpfEvade
 
         private void PlayedTimer_Tick(object sender, EventArgs e)
         {
-            gamespeed = 1 + ((int)timePlayed / 10) / 5.0F; //#magicnumber
+            gamespeed = 1 + ((int)timePlayed / 10) * Constants.GAMESPEEDFACTOR;
             timePlayed += 0.1F;
             lTime.Content = timePlayed.ToString("0.0");
         }
