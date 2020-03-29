@@ -1,4 +1,6 @@
 ﻿using Evade;
+using Evade.Model;
+using Evade.Util;
 using System;
 using System.Collections.Generic;
 using System.Windows;
@@ -15,10 +17,12 @@ namespace WpfEvade
     {
         private readonly Player player;
         private List<Block> blocks = new List<Block>();
+
         private float gamespeed = 1;
         private int direction = 0;
         private float count = 0;
         private float timePlayed = -1;
+
         private readonly Random rand = new Random();
         private readonly DispatcherTimer gameTimer;
         private readonly DispatcherTimer playedTimer;
@@ -32,8 +36,8 @@ namespace WpfEvade
 
             player = new Player();
             canvas.Children.Add(player.Rect);
-            player.X = (int)canvas.Width / 2 - Constants.PLAYERSIZE / 2;
-            player.Y = (int)canvas.Height - (int)(Constants.PLAYERSIZE * 1.75);
+            player.X = ((int)canvas.Width) / 2 - Constants.PLAYERSIZE / 2;
+            player.Y = ((int)canvas.Height) - Constants.PLAYERSIZE*5/3;
             Canvas.SetLeft(player.Rect, player.X);
             Canvas.SetTop(player.Rect, player.Y);
             //get highscore

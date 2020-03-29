@@ -1,6 +1,4 @@
-﻿using System.Windows.Media;
-
-namespace Evade
+﻿namespace Evade.Model
 {
     class Block : Entity
     {

@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace Evade
+namespace Evade.Util
 {
     static class FileManager
     {

@@ -5,17 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfEvade"
         mc:Ignorable="d"
-        Title="Welcome" Height="316" Width="469">
+        Title="Welcome" Height="263" Width="450">
     <Grid>
-        <Label Content="Welcome to Evade!" HorizontalAlignment="Left" Margin="179,29,0,0" VerticalAlignment="Top" Height="26" Width="111"/>
-        <Label Content="Please enter your name and press &lt;RETURN&gt;" HorizontalAlignment="Left" Margin="109,60,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="26" Width="252"/>
+        <Label Content="Welcome to Evade!" HorizontalAlignment="Left" Margin="179,15,0,0" VerticalAlignment="Top" Height="26" Width="111"/>
+        <Label Content="Please enter your name and press &lt;RETURN&gt;" HorizontalAlignment="Center" Margin="0,40,0,0" VerticalAlignment="Top" Height="26" Width="252"/>
         <StackPanel FocusManager.FocusedElement="{Binding ElementName=txtName}">
-            <TextBox x:Name="txtName" HorizontalAlignment="Left" Margin="174,124,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" KeyDown="OnKeyDownHandler"/>
+            <TextBox x:Name="txtName" HorizontalAlignment="Left" Margin="174,80,0,0" TextWrapping="Wrap" Width="120" KeyDown="OnKeyDownHandler" FontSize="18"/>
         </StackPanel>
-
-        <Label Content="&quot;Try to avoid the falling blocks with the (yellow) player as long as possible!" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="34,171,0,0" Grid.ColumnSpan="2" Height="26" Width="402"/>
-        <Label Content="Use &lt;LEFT&gt; and &lt;RIGHT&gt; to move." HorizontalAlignment="Left" Margin="135,202,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="26" Width="199"/>
-        <Label Content="The game will get faster every 10 seconds..." HorizontalAlignment="Left" Margin="115,252,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="26" Width="238"/>
+        <Label Content="Try to avoid the falling blocks with the (yellow) player as long as possible!" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,121,0,0" Height="26" Width="402"/>
+        <Label Content="Use &lt;LEFT&gt; and &lt;RIGHT&gt; to move." HorizontalAlignment="Left" Margin="135,152,0,0" VerticalAlignment="Top" Height="26" Width="199"/>
+        <Label Content="The game will get faster every 10 seconds..." HorizontalAlignment="Left" Margin="109,183,0,0" VerticalAlignment="Top" Height="26" Width="238"/>
 
     </Grid>
 </Window>

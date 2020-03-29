@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
-using System.Windows.Media;
-
-namespace Evade
+﻿namespace Evade.Model
 {
     class Player : Entity
     {
