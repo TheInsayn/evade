@@ -1,0 +1,25 @@
+﻿<Window x:Class="WpfEvade.WelcomeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfEvade"
+        mc:Ignorable="d"
+        Title="Welcome" Height="316" Width="469">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="303*"/>
+            <ColumnDefinition Width="166*"/>
+        </Grid.ColumnDefinitions>
+        <Label Content="Welcome to Evade!" HorizontalAlignment="Left" Margin="179,29,0,0" VerticalAlignment="Top"/>
+        <Label Content="Please enter your name and press &lt;RETURN&gt;" HorizontalAlignment="Left" Margin="109,60,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+        <StackPanel FocusManager.FocusedElement="{Binding ElementName=txtName}">
+            <TextBox x:Name="txtName" HorizontalAlignment="Left" Margin="174,124,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" KeyDown="OnKeyDownHandler"/>
+        </StackPanel>
+        
+        <Label Content="&quot;Try to avoid the falling blocks with the (yellow) player as long as possible!" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="34,171,0,0" Grid.ColumnSpan="2"/>
+        <Label Content="Use &lt;LEFT&gt; and &lt;RIGHT&gt; to move." HorizontalAlignment="Left" Margin="135,202,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+        <Label Content="The game will get faster every 10 seconds..." HorizontalAlignment="Left" Margin="115,252,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+
+    </Grid>
+</Window>
