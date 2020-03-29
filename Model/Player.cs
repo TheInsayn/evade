@@ -7,9 +7,9 @@ using System.Windows.Media;
 
 namespace Evade
 {
-    class Player: Entity
+    class Player : Entity
     {
-        public Player(int size, Color c) : base(size, c, 0, 0) { }
-        public Player(int size, Color c, int x, int y) : base(size, c, x, y) { }
+        public Player() : this(0, 0) { }
+        public Player(int x, int y) : base(Constants.PLAYERSIZE, Constants.PLAYERCOLOR, x, y) { }
     }
 }

@@ -5,16 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfEvade"
         mc:Ignorable="d"
-        Title="Evade" Height="640" Width="800" ResizeMode="NoResize">
+        Title="Evade" Height="640" Width="800" ResizeMode="NoResize" KeyDown="OnKeyDownHandler" KeyUp="OnKeyUpHandler">
     <Grid>
-        <Canvas x:Name="cnvGame" Background="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}" Margin="0,0,200,0" Width="600" Height="624"/>
-        <Label Content="NAME" HorizontalAlignment="Left" Margin="675,44,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="lPlayerName" Content="name" HorizontalAlignment="Left" Margin="675,75,0,0" VerticalAlignment="Top"/>
-        <Label Content="TIME" HorizontalAlignment="Left" Margin="675,178,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="lTime" Content="0.0s" HorizontalAlignment="Left" Margin="675,209,0,0" VerticalAlignment="Top"/>
-        <Label Content="HIGHSCORE" HorizontalAlignment="Left" Margin="678,477,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="lHighscoreName" Content="name" HorizontalAlignment="Left" Margin="678,508,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="lHighscoreTime" Content="0.0s" HorizontalAlignment="Left" Margin="678,539,0,0" VerticalAlignment="Top"/>
+        <Canvas x:Name="canvas" Background="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}" Margin="0,0,200,0" Width="600" Height="624"/>
+        <Label Content="NAME" HorizontalAlignment="Left" Margin="658,28,0,0" VerticalAlignment="Top" FontSize="24"/>
+        <Label x:Name="lPlayerName" Content="name" HorizontalAlignment="Left" Margin="668,70,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <Label Content="TIME" HorizontalAlignment="Left" Margin="665,127,0,0" VerticalAlignment="Top" FontSize="24"/>
+        <Label x:Name="lTime" Content="0.0s" HorizontalAlignment="Left" Margin="671,174,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" FontSize="20"/>
+        <Label Content="HIGHSCORE" HorizontalAlignment="Left" Margin="627,439,0,0" VerticalAlignment="Top" FontSize="24"/>
+        <Label x:Name="lHighscoreName" Content="name" HorizontalAlignment="Left" Margin="667,486,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <Label x:Name="lHighscoreTime" Content="0.0" HorizontalAlignment="Left" Margin="680,528,0,0" VerticalAlignment="Top" FontSize="20"/>
 
     </Grid>
 </Window>

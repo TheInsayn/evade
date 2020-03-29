@@ -1,10 +1,10 @@
 ﻿using Evade;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
+using System.Windows.Input;
+using System.Windows.Threading;
 
 namespace WpfEvade
 {
@@ -13,27 +13,15 @@ namespace WpfEvade
     /// </summary>
     public partial class MainWindow : Window
     {
-        private const int PLAYERSIZE = 30;
-        private const int PLAYERMOVESPEED = 8;
-
-        private const int BLOCKMINSIZE = 30;
-        private const int BLOCKMAXSIZE = 60;
-        private const int BLOCKMINSPEED = 5;
-        private const int BLOCKMAXSPEED = 8;
-
-        private Color PLAYERCOLOR = Colors.Yellow;
-        private Color BLOCKCOLOR = Colors.Red;
-
-        private Player player;
+        private readonly Player player;
         private List<Block> blocks = new List<Block>();
         private float gamespeed = 1;
         private int direction = 0;
         private float count = 0;
         private float timePlayed = -1;
-        Random rand = new Random();
-        System.Windows.Threading.DispatcherTimer gameTimer;
-        System.Windows.Threading.DispatcherTimer playedTimer;
-        Canvas canvas;
+        private readonly Random rand = new Random();
+        private readonly DispatcherTimer gameTimer;
+        private readonly DispatcherTimer playedTimer;
 
         public MainWindow()
         {
@@ -42,38 +30,29 @@ namespace WpfEvade
             if (ww.ShowDialog() == true)
                 lPlayerName.Content = ww.PlayerName;
 
-            canvas = cnvGame;
-            player = new Player(PLAYERSIZE, PLAYERCOLOR);
+            player = new Player();
             canvas.Children.Add(player.Rect);
-            player.X = (int)cnvGame.Width / 2 - PLAYERSIZE / 2;
-            player.Y = (int)cnvGame.Height - PLAYERSIZE;
+            player.X = (int)canvas.Width / 2 - Constants.PLAYERSIZE / 2;
+            player.Y = (int)canvas.Height - (int)(Constants.PLAYERSIZE * 1.75);
             Canvas.SetLeft(player.Rect, player.X);
             Canvas.SetTop(player.Rect, player.Y);
             //get highscore
             string name = FileManager.ReadAttribute("name");
-            float time = 0;//float.Parse(FileManager.ReadAttribute("time"));
+            string timestr = FileManager.ReadAttribute("time");
+            float time = timestr.Length > 0 ? float.Parse(timestr) : 0;
             lHighscoreName.Content = name;
             lHighscoreTime.Content = time.ToString();
-            gameTimer = new System.Windows.Threading.DispatcherTimer();
-            gameTimer.Tick += timer_Tick;
+            gameTimer = new DispatcherTimer();
+            gameTimer.Tick += GameTimer_Tick;
             gameTimer.Interval = new TimeSpan(0, 0, 0, 0, 20);
             gameTimer.Start();
-            playedTimer = new System.Windows.Threading.DispatcherTimer();
-            playedTimer.Tick += tPlayed_Tick;
-            playedTimer.Interval = new TimeSpan(0, 0, 0, 0, 20);
+            playedTimer = new DispatcherTimer();
+            playedTimer.Tick += PlayedTimer_Tick;
+            playedTimer.Interval = new TimeSpan(0, 0, 0, 0, 100);
             playedTimer.Start();
         }
 
-        /*private void pnlField_Paint(object sender, PaintEventArgs e)
-        {
-            player.Draw(g);
-            foreach (Block b in blocks)
-            {
-                b.Draw(g);
-            }
-        }*/
-
-        private void timer_Tick(object sender, EventArgs e)
+        private void GameTimer_Tick(object sender, EventArgs e)
         {
             UpdatePlayerPos();
             if (timePlayed >= 0)
@@ -86,7 +65,6 @@ namespace WpfEvade
                     CreateBlock();
                 }
             }
-            canvas.InvalidateVisual();
         }
 
         private void UpdatePlayerPos()
@@ -96,10 +74,10 @@ namespace WpfEvade
             switch (direction)
             {
                 case -1:
-                    movement = -PLAYERMOVESPEED;
+                    movement = -Constants.PLAYERMOVESPEED;
                     break;
                 case 1:
-                    movement = PLAYERMOVESPEED;
+                    movement = Constants.PLAYERMOVESPEED;
                     break;
                 default:
                     break;
@@ -107,8 +85,11 @@ namespace WpfEvade
             if (movement != 0)
             {
                 int newPos = player.X + movement;
-                if (newPos >= 0 && newPos + PLAYERSIZE <= canvas.Width)
+                if (newPos >= 0 && newPos + Constants.PLAYERSIZE <= canvas.Width)
+                {
                     player.X = newPos;
+                    Canvas.SetLeft(player.Rect, newPos);
+                }
             }
         }
 
@@ -144,12 +125,14 @@ namespace WpfEvade
 
         private void CreateBlock()
         {
-            int size = rand.Next(BLOCKMINSIZE, BLOCKMAXSIZE);
+            int size = rand.Next(Constants.BLOCKMINSIZE, Constants.BLOCKMAXSIZE);
             int pos = rand.Next((int)canvas.Width - size);
-            int speed = rand.Next(BLOCKMINSPEED, BLOCKMAXSPEED + 1);
-            Block block = new Block(size, BLOCKCOLOR, speed, pos, -size);
-            block.X = pos;
-            block.Y = -size;
+            int speed = rand.Next(Constants.BLOCKMINSPEED, Constants.BLOCKMAXSPEED + 1);
+            Block block = new Block(size, speed)
+            {
+                X = pos,
+                Y = -size
+            };
             blocks.Add(block);
             canvas.Children.Add(block.Rect);
             Canvas.SetLeft(block.Rect, block.X);
@@ -191,8 +174,8 @@ namespace WpfEvade
             direction = 0;
             count = 0;
             timePlayed = -1;
-            player.X = (int)canvas.Width / 2 - PLAYERSIZE / 2;
-            player.Y = (int)canvas.Height - PLAYERSIZE;
+            player.X = (int)canvas.Width / 2 - Constants.PLAYERSIZE / 2;
+            player.Y = (int)canvas.Height - Constants.PLAYERSIZE;
             canvas.Children.Add(player.Rect);
             //get highscore
             string name = FileManager.ReadAttribute("name");
@@ -203,23 +186,23 @@ namespace WpfEvade
             playedTimer.Start();
         }
 
-        /*private void FormMain_KeyDown(object sender, KeyEventArgs e)
+        private void OnKeyDownHandler(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Left)
+            if (e.Key == Key.Left)
                 direction = -1;
-            else if (e.KeyCode == Keys.Right)
+            else if (e.Key == Key.Right)
                 direction = 1;
-        }*/
+        }
 
-        /*private void FormMain_KeyUp(object sender, KeyEventArgs e)
+        private void OnKeyUpHandler(object sender, KeyEventArgs e)
         {
-            if (direction == -1 && e.KeyCode == Keys.Left ||
-                direction == 1 && e.KeyCode == Keys.Right)
+            if (direction == -1 && e.Key == Key.Left ||
+                direction == 1 && e.Key == Key.Right)
                 direction = 0;
 
-        }*/
+        }
 
-        private void tPlayed_Tick(object sender, EventArgs e)
+        private void PlayedTimer_Tick(object sender, EventArgs e)
         {
             gamespeed = 1 + ((int)timePlayed / 10) / 5.0F; //#magicnumber
             timePlayed += 0.1F;
