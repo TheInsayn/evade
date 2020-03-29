@@ -33,17 +33,18 @@ namespace WpfEvade
             WelcomeWindow ww = new WelcomeWindow();
             if (ww.ShowDialog() == true)
                 lPlayerName.Content = ww.PlayerName;
+            else
+                this.Close();
 
             player = new Player();
             canvas.Children.Add(player.Rect);
             player.X = ((int)canvas.Width) / 2 - Constants.PLAYERSIZE / 2;
-            player.Y = ((int)canvas.Height) - Constants.PLAYERSIZE*5/3;
+            player.Y = ((int)canvas.Height) - Constants.PLAYERSIZE * 5 / 3; // TODO: why?
             Canvas.SetLeft(player.Rect, player.X);
             Canvas.SetTop(player.Rect, player.Y);
             //get highscore
             string name = FileManager.ReadAttribute("name");
-            string timestr = FileManager.ReadAttribute("time");
-            float time = timestr.Length > 0 ? float.Parse(timestr) : 0;
+            float time = float.Parse(FileManager.ReadAttribute("time"));
             lHighscoreName.Content = name;
             lHighscoreTime.Content = time.ToString();
             gameTimer = new DispatcherTimer();
@@ -162,11 +163,16 @@ namespace WpfEvade
 
         private void EndGame()
         {
-            /*FormEnd fe = new FormEnd(lPlayerName.Text, lGameTime.Text, lHighscoreName.Text, lHighscoreTime.Text);
-            if (fe.ShowDialog() == DialogResult.Retry)
+            GameOverWindow gow = new GameOverWindow(
+                lPlayerName.Content.ToString(),
+                lTime.Content.ToString(),
+                lHighscoreName.Content.ToString(),
+                lHighscoreTime.Content.ToString()
+            );
+            if (gow.ShowDialog() == true)
                 RestartGame();
             else
-                Application.Exit();*/
+                this.Close();
         }
 
         private void RestartGame()

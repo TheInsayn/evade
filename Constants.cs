@@ -7,6 +7,8 @@ namespace Evade
 {
     static class Constants
     {
+        public const string HIGHSCOREFILE = @"highscore.hs";
+
         public const int PLAYERSIZE = 30;
         public const int PLAYERMOVESPEED = 8;
 

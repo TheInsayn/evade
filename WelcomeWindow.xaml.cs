@@ -11,7 +11,6 @@ namespace WpfEvade
         public WelcomeWindow()
         {
             InitializeComponent();
-            //this.KeyPreview = true;
         }
 
         public string PlayerName
