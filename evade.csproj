@@ -4,6 +4,8 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>evade_icon.ico</ApplicationIcon>
+    <Version>0.3.0</Version>
   </PropertyGroup>
 
 </Project>
