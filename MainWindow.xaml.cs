@@ -43,8 +43,8 @@ namespace WpfEvade
             Canvas.SetLeft(player.Rect, player.X);
             Canvas.SetTop(player.Rect, player.Y);
             //get highscore
-            string name = FileManager.ReadAttribute("name");
-            float time = float.Parse(FileManager.ReadAttribute("time"));
+            string name = HighScoreManager.ReadAttribute("name");
+            float time = float.Parse(HighScoreManager.ReadAttribute("time"));
             lHighscoreName.Content = name;
             lHighscoreTime.Content = time.ToString();
             gameTimer = new DispatcherTimer();
@@ -153,8 +153,8 @@ namespace WpfEvade
             { //highscore beaten - replace it
                 string newName = lPlayerName.Content.ToString();
                 string newTime = lTime.Content.ToString();
-                FileManager.WriteAttribute("name", newName);
-                FileManager.WriteAttribute("time", newTime);
+                HighScoreManager.WriteAttribute("name", newName);
+                HighScoreManager.WriteAttribute("time", newTime);
                 lHighscoreName.Content = newName;
                 lHighscoreTime.Content = newTime;
             }
@@ -188,8 +188,8 @@ namespace WpfEvade
             canvas.Children.Add(player.Rect);
             Canvas.SetLeft(player.Rect, player.X);
             //get highscore
-            string name = FileManager.ReadAttribute("name");
-            float time = float.Parse(FileManager.ReadAttribute("time"));
+            string name = HighScoreManager.ReadAttribute("name");
+            float time = float.Parse(HighScoreManager.ReadAttribute("time"));
             lHighscoreName.Content = name;
             lHighscoreTime.Content = time.ToString();
             gameTimer.Start();

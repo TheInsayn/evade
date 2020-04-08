@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using Evade;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
 namespace Evade.Util
 {
-    static class FileManager
+    static class HighScoreManager
     {
         //read attribute
         public static string ReadAttribute(string attribute)
@@ -16,7 +17,7 @@ namespace Evade.Util
             string value;
             try
             {
-                using (StreamReader sr = new StreamReader(@"highscore.hs", Encoding.UTF8))
+                using (StreamReader sr = new StreamReader(Constants.HIGHSCOREFILE, Encoding.UTF8))
                 {
                     while (!sr.EndOfStream)
                     {
@@ -47,7 +48,7 @@ namespace Evade.Util
             try
             {
                 List<string> fContent = new List<string>();
-                using (StreamReader sr = new StreamReader(@"highscore.hs", Encoding.UTF8))
+                using (StreamReader sr = new StreamReader(Constants.HIGHSCOREFILE, Encoding.UTF8))
                 {
                     while (!sr.EndOfStream)
                     {
@@ -64,7 +65,7 @@ namespace Evade.Util
                         }
                     }
                 }
-                using (StreamWriter sw = new StreamWriter(@"highscore.hs", false, Encoding.UTF8))
+                using (StreamWriter sw = new StreamWriter(Constants.HIGHSCOREFILE, false, Encoding.UTF8))
                 {
                     foreach (string line in fContent)
                     {
