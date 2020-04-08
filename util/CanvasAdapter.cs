@@ -1,8 +1,5 @@
-﻿using Evade;
-using Evade.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Windows.Controls;
 
 namespace Evade.Model

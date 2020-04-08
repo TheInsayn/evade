@@ -8,4 +8,10 @@
     <Version>0.3.0</Version>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Page Update="forms\GameOverWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
 </Project>

@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace WpfEvade
+namespace Evade
 {
     /// <summary>
     /// Interaction logic for App.xaml
