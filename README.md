@@ -3,6 +3,8 @@ This is a simple C#/WPF game created as a university project.
 It stems from an ancient hobby project which I've written in school times, that has been improved and totally reworked from ground up.    
 You can find the original WinForms code in `evade_forms.zip`.
 
+I've used dotnetcore3.1, I hope it will run on your computer.
+
 ### About the game
 The game is simple.    
 You are a (yellow) rectangle and are trying to avoid (red) falling blocks.    
