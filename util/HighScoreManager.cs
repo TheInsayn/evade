@@ -13,23 +13,21 @@ namespace Evade.Util
             }
             try
             {
-                using (StreamReader sr = new StreamReader(Constants.HIGHSCOREFILE, Encoding.UTF8))
+                using StreamReader sr = new StreamReader(Constants.HIGHSCOREFILE, Encoding.UTF8);
+                string value;
+                while (!sr.EndOfStream)
                 {
-                    string value;
-                    while (!sr.EndOfStream)
+                    value = sr.ReadLine();
+                    if (value.Length == 0 || value[0] == '#')
+                        continue;
+                    if (value.Remove(value.IndexOf('=')) == attribute)
                     {
-                        value = sr.ReadLine();
-                        if (value.Length == 0 || value[0] == '#')
-                            continue;
-                        if (value.Remove(value.IndexOf('=')) == attribute)
-                        {
-                            if (value.IndexOf('=') != value.Length)
-                                return value.Substring(value.IndexOf('=') + 1);
-                            else
-                                return "";
-                        }
-
+                        if (value.IndexOf('=') != value.Length)
+                            return value.Substring(value.IndexOf('=') + 1);
+                        else
+                            return "";
                     }
+
                 }
             }
             catch (IOException) { }

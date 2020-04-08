@@ -80,7 +80,7 @@ namespace Evade.Model
             if (movement != 0)
             {
                 int newPos = player.X + movement;
-                newPos = (int) Math.Clamp(newPos, 0, canvas.Width - Constants.PLAYERSIZE);
+                newPos = (int)Math.Clamp(newPos, 0, canvas.Width - Constants.PLAYERSIZE);
                 player.X = newPos;
                 Canvas.SetLeft(player.Rect, newPos);
             }
