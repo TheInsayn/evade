@@ -37,8 +37,12 @@ Following screenshots give you an idea how the game looks:
 
 **Entering your name**
 ![The welcoming dialog](/screenshots/00_Welcome.png?raw=true "Welcome dialog")
+
+
 **In-Game**
 ![The in-game main application](/screenshots/01_In-Game.png?raw=true "Gameplay")
+
+
 **Game-over dialog**
 ![The game over dialog](/screenshots/02_GameOver.png?raw=true "Game-over dialog")
 
